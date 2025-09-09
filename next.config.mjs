@@ -13,9 +13,7 @@ const nextConfig = {
     ignoreBuildErrors: true,
   },
   
-  experimental: {
-    serverComponentsExternalPackages: ['@neondatabase/serverless', 'jose']
-  }
+  serverExternalPackages: ['@neondatabase/serverless', 'jose']
 };
 
 export default nextConfig;
