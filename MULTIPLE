@@ -1,0 +1,227 @@
+// app/globals.css
+@layer utilities {
+.bg-app-texture {
+  /* Base blanca con un degradado moderno y un ruido sutil por encima */
+  background-color: #ffffff;
+  background-image:
+    radial-gradient(60% 60% at 0% 0%, rgba(255, 87, 34, 0.07) 0%, rgba(255, 87, 34, 0) 60%),
+    radial-gradient(50% 50% at 100% 0%, rgba(102, 41, 56, 0.06) 0%, rgba(102, 41, 56, 0) 60%),
+    radial-gradient(60% 60% at 100% 100%, rgba(94, 100, 103, 0.06) 0%, rgba(94, 100, 103, 0) 60%),
+    linear-gradient(180deg, rgba(255,255,255,0.98), rgba(255,255,255,0.98)),
+    radial-gradient(rgba(0,0,0,0.03) 1px, rgba(0,0,0,0) 1px);
+  background-size: auto, auto, auto, auto, 6px 6px;
+  background-position: center, center, center, center, 0 0;
+  background-attachment: fixed, fixed, fixed, fixed, fixed;
+}
+.dark .bg-app-texture {
+  /* Ajuste para modo oscuro si se usa en el futuro */
+  background-image:
+    radial-gradient(60% 60% at 0% 0%, rgba(255, 87, 34, 0.08) 0%, rgba(255, 87, 34, 0) 60%),
+    radial-gradient(50% 50% at 100% 0%, rgba(255,255,255,0.06) 0%, rgba(255,255,255,0) 60%),
+    radial-gradient(60% 60% at 100% 100%, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0) 60%),
+    linear-gradient(180deg, rgba(18,18,18,0.96), rgba(18,18,18,0.96)),
+    radial-gradient(rgba(255,255,255,0.035) 1px, rgba(0,0,0,0) 1px);
+}
+}
+
+@layer utilities {
+  /* Fondo con degradado al 50% + grano sutil, fijo */
+  .bg-app-texture {
+    background-color: #ffffff;
+    background-image:
+      /* Degradado 50% desde arriba en el color principal (naranja Snappy) */
+      linear-gradient(
+        180deg,
+        rgba(255, 87, 34, 0.12) 0%,
+        rgba(255, 87, 34, 0.08) 50%,
+        rgba(255, 87, 34, 0.00) 100%
+      ),
+      /* Tint suave en esquina superior derecha */
+      radial-gradient(60% 60% at 100% 0%, rgba(102, 41, 56, 0.06) 0%, rgba(102, 41, 56, 0) 60%),
+      /* Grano sutil */
+      radial-gradient(rgba(0,0,0,0.028) 1px, rgba(0,0,0,0) 1px);
+    background-size: auto, auto, 6px 6px;
+    background-position: center, center, 0 0;
+    background-attachment: fixed, fixed, fixed;
+  }
+  .dark .bg-app-texture {
+    background-color: #0f1113;
+    background-image:
+      linear-gradient(
+        180deg,
+        rgba(255, 87, 34, 0.16) 0%,
+        rgba(255, 87, 34, 0.10) 50%,
+        rgba(255, 87, 34, 0.00) 100%
+      ),
+      radial-gradient(60% 60% at 100% 0%, rgba(255,255,255,0.07) 0%, rgba(255,255,255,0) 60%),
+      radial-gradient(rgba(255,255,255,0.04) 1px, rgba(0,0,0,0) 1px);
+  }
+
+  /* Efecto glass global (50% aprox) */
+  .glass {
+    background: rgba(255, 255, 255, 0.5);
+    backdrop-filter: saturate(140%) blur(14px);
+    -webkit-backdrop-filter: saturate(140%) blur(14px);
+    border: 1px solid rgba(255, 255, 255, 0.28);
+    box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+  }
+  .dark .glass {
+    background: rgba(17, 17, 19, 0.5);
+    border-color: rgba(255,255,255,0.14);
+    box-shadow: 0 8px 30px rgba(0,0,0,0.35);
+  }
+
+  /* Tarjeta glass reutilizable */
+  .glass-card {
+    background: rgba(255, 255, 255, 0.5);
+    backdrop-filter: saturate(140%) blur(14px);
+    -webkit-backdrop-filter: saturate(140%) blur(14px);
+    border: 1px solid rgba(255, 255, 255, 0.28);
+    border-radius: 1rem;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.10);
+  }
+  .dark .glass-card {
+    background: rgba(17, 17, 19, 0.5);
+    border-color: rgba(255,255,255,0.14);
+    box-shadow: 0 10px 40px rgba(0,0,0,0.45);
+  }
+}
+
+@layer utilities {
+  .bg-app-texture {
+    background-color: #ffffff;
+    background-image:
+      linear-gradient(180deg, rgba(255,87,34,0.12) 0%, rgba(255,87,34,0.08) 50%, rgba(255,87,34,0) 100%),
+      radial-gradient(60% 60% at 100% 0%, rgba(102,41,56,0.06) 0%, rgba(102,41,56,0) 60%),
+      radial-gradient(rgba(0,0,0,0.028) 1px, rgba(0,0,0,0) 1px);
+    background-size: auto, auto, 6px 6px;
+    background-position: center, center, 0 0;
+    background-attachment: fixed, fixed, fixed;
+  }
+  .dark .bg-app-texture {
+    background-color: #0f1113;
+    background-image:
+      linear-gradient(180deg, rgba(255,87,34,0.16) 0%, rgba(255,87,34,0.10) 50%, rgba(255,87,34,0) 100%),
+      radial-gradient(60% 60% at 100% 0%, rgba(255,255,255,0.07) 0%, rgba(255,255,255,0) 60%),
+      radial-gradient(rgba(255,255,255,0.04) 1px, rgba(0,0,0,0) 1px);
+  }
+
+  .glass {
+    background: rgba(255,255,255,0.5);
+    backdrop-filter: saturate(140%) blur(14px);
+    -webkit-backdrop-filter: saturate(140%) blur(14px);
+    border: 1px solid rgba(255,255,255,0.28);
+    box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+  }
+  .dark .glass {
+    background: rgba(17,17,19,0.5);
+    border-color: rgba(255,255,255,0.14);
+    box-shadow: 0 8px 30px rgba(0,0,0,0.35);
+  }
+
+  .glass-card {
+    background: rgba(255,255,255,0.5);
+    backdrop-filter: saturate(140%) blur(14px);
+    -webkit-backdrop-filter: saturate(140%) blur(14px);
+    border: 1px solid rgba(255,255,255,0.28);
+    border-radius: 1rem;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.10);
+  }
+  .dark .glass-card {
+    background: rgba(17,17,19,0.5);
+    border-color: rgba(255,255,255,0.14);
+    box-shadow: 0 10px 40px rgba(0,0,0,0.45);
+  }
+}
+
+// app/layout.tsx
+import { cn } from "@/utils/cn";
+import { Inter, Playfair_Display, Bai_Jamjuree } from 'next/font/google';
+import "./globals.css";
+
+const inter = Inter({ subsets: ["latin"] });
+const playfairDisplay = Playfair_Display({ subsets: ["latin"], variable: "--font-playfair-display" });
+const baiJamjuree = Bai_Jamjuree({ subsets: ["latin"], variable: "--font-bai-jamjuree" });
+
+export default function RootLayout({ children }: { children: React.ReactNode }) {
+return (
+  <html lang="en">
+    <body className={cn("font-body text-dark antialiased bg-app-texture", playfairDisplay.variable, inter.variable, baiJamjuree.variable)}>
+      {children}
+    </body>
+  </html>
+);
+}
+
+// components/home-client.tsx
+import React from "react";
+
+const HomeClient = () => {
+return (
+  <div>
+    {/* Sección Hero */}
+    <section className="w-full py-24 bg-transparent overflow-hidden leading-10 tracking-normal md:py-32">
+      {/* Contenido de la sección Hero */}
+    </section>
+
+    {/* Sección Últimas Diplomaturas */}
+    <section className="w-full bg-transparent overflow-hidden py-24 md:py-32">
+      {/* Contenido de la sección Últimas Diplomaturas */}
+      {/* Contenido de la sección Últimas Diplomaturas */}
+    </section>
+
+    {/* Sección Beneficios */}
+    <section id="benefits" className="w-full bg-transparent overflow-hidden py-24 md:py-32">
+      {/* Contenido de la sección Beneficios */}
+    </section>
+
+    {/* Sección Sobre */}
+    <section id="sobre" className="bg-transparent overflow-hidden py-24 md:py-32">
+      {/* Contenido de la sección Sobre */}
+    </section>
+
+    {/* Sección Testimonios */}
+    <section className="w-full bg-transparent overflow-hidden py-24 md:py-32">
+      {/* Contenido de la sección Testimonios */}
+    </section>
+
+    {/* Sección FAQ */}
+    <section className="w-full py-24 bg-transparent overflow-hidden my-12 md:my-24">
+      {/* Contenido de la sección FAQ */}
+    </section>
+
+    {/* Sección Partners */}
+    <section className="w-full bg-[#662938] overflow-hidden py-24 md:py-32">
+      {/* Contenido de la sección Partners */}
+    </section>
+  </div>
+);
+};
+
+export default HomeClient;
+
+// app/cursos/page.tsx
+import React from "react";
+
+const CursosPage = () => {
+return (
+  <div className="bg-transparent py-12 md:py-20">
+    {/* Contenido de la página de cursos */}
+  </div>
+);
+};
+
+export default CursosPage;
+
+// app/cursos/[slug]/page.tsx
+import React from "react";
+
+const CursoSlugPage = () => {
+return (
+  <div className="bg-transparent py-12 md:py-20">
+    {/* Contenido de la página de curso específico */}
+  </div>
+);
+};
+
+export default CursoSlugPage;

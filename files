@@ -1,0 +1,72 @@
+/// app/globals.css
+.glass {
+  background: rgba(255, 255, 255, 0.42); /* más translúcido para que el blur resalte */
+  backdrop-filter: saturate(160%) blur(24px);
+  -webkit-backdrop-filter: saturate(160%) blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  box-shadow: 0 10px 48px rgba(0,0,0,0.12);
+}
+.dark .glass {
+  background: rgba(17, 17, 19, 0.42);
+  border-color: rgba(255,255,255,0.22);
+  box-shadow: 0 12px 50px rgba(0,0,0,0.45);
+}
+
+.glass-card {
+  background: rgba(255, 255, 255, 0.42);
+  backdrop-filter: saturate(160%) blur(24px);
+  -webkit-backdrop-filter: saturate(160%) blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  border-radius: 1rem;
+  box-shadow: 0 14px 56px rgba(0,0,0,0.14);
+}
+.dark .glass-card {
+  background: rgba(17, 17, 19, 0.42);
+  border-color: rgba(255,255,255,0.22);
+  box-shadow: 0 14px 56px rgba(0,0,0,0.55);
+}
+
+// components/header.tsx
+<header className="sticky top-0 z-50 w-full glass border-b border-white/40">
+  {/* rest of code here */}
+</header>
+
+<Button variant="ghost" size="icon" aria-label="Abrir menú" className="glass hover:opacity-90">
+  {/* rest of code here */}
+</Button>
+
+// components/footer.tsx
+<footer className="glass text-foreground py-12">
+  {/* rest of code here */}
+</footer>
+
+// components/home-client.tsx
+<Card key={course.id} className="flex flex-col overflow-hidden glass-card">
+  {/* rest of code here */}
+</Card>
+
+<Card className="glass-card">
+  {/* rest of code here */}
+</Card>
+
+<AccordionItem className="glass-card border rounded-lg">
+  {/* rest of code here */}
+</AccordionItem>
+
+// app/cursos/page.tsx
+<Card key={course.id} className="flex flex-col overflow-hidden glass-card">
+  {/* rest of code here */}
+</Card>
+
+// app/cursos/[slug]/page.tsx
+<div className="glass-card p-4">
+  {/* rest of code here */}
+</div>
+
+<div className="glass-card p-4">
+  {/* rest of code here */}
+</div>
+
+<div className="glass-card p-4">
+  {/* rest of code here */}
+</div>
