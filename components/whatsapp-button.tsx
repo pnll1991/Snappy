@@ -1,8 +1,8 @@
 import Link from "next/link"
-import { MessageCircle } from 'lucide-react'
+import { MessageCircle } from "lucide-react"
 
 export default function WhatsappButton() {
-  const number = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "5490000000000"
+  const number = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "5491141498531"
   const whatsappLink = `https://wa.me/${number}`
 
   return (

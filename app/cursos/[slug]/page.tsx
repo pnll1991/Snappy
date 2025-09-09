@@ -36,8 +36,8 @@ export async function generateMetadata({
 }
 
 function getWhatsAppLink(title: string) {
-  const raw = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "5493416414491"
-  const phone = (raw || "").replace(/\D/g, "") || "5493416414491"
+  const raw = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "5491141498531"
+  const phone = (raw || "").replace(/\D/g, "") || "5491141498531"
   const text = encodeURIComponent(`Quiero saber más sobre ${title}!`)
   return `https://wa.me/${phone}?text=${text}`
 }

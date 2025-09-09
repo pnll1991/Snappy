@@ -4,7 +4,7 @@ import { Mail, Phone, MapPin } from "lucide-react"
 
 export default function Footer() {
   const year = new Date().getFullYear()
-  const number = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "5493416414491"
+  const number = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "5491141498531"
   const whatsappLink = `https://wa.me/${number}?text=${encodeURIComponent("Hola Snappy Coaching, quiero más información.")}`
 
   return (
@@ -97,8 +97,8 @@ export default function Footer() {
               </li>
               <li className="flex items-start gap-2">
                 <Phone className="h-5 w-5 mt-0.5 text-primary" />
-                <a className="hover:text-primary transition-colors" href={`tel:+${number}`}>
-                  +{number}
+                <a className="hover:text-primary transition-colors" href={`tel:+5491141498531`}>
+                  +54 9 11 4149-8531
                 </a>
               </li>
               <li className="flex items-start gap-2">
