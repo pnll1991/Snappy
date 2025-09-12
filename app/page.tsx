@@ -120,6 +120,11 @@ export default async function HomePage() {
 
   try {
     latestCourses = await getVisibleCourses()
+    console.log("[v0] Total cursos visibles encontrados:", latestCourses.length)
+    console.log(
+      "[v0] Cursos visibles:",
+      latestCourses.map((c) => ({ id: c.id, title: c.title, visible: c.visible })),
+    )
   } catch (error) {
     console.error("Database connection error:", error)
     // Continue with empty array if database is not available

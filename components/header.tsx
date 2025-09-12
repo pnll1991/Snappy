@@ -38,7 +38,7 @@ export default function Header() {
               sizes="(max-width: 640px) 140px, 180px"
             />
             <div
-              className="hidden sm:block bg-red-800 px-2 py-1.5 sm:px-3 sm:py-2 rounded-md transition-all duration-200"
+              className="block bg-red-800 px-1.5 py-1 sm:px-3 sm:py-2 rounded-md transition-all duration-200"
               style={{ backgroundColor: "rgb(102, 41, 56)" }}
             >
               <Image
@@ -46,9 +46,9 @@ export default function Header() {
                 alt="UAI Logo"
                 width={100}
                 height={25}
-                className="object-contain w-auto h-6 sm:h-7"
+                className="object-contain w-auto h-4 sm:h-6 md:h-7"
                 priority
-                sizes="(max-width: 640px) 100px, 120px"
+                sizes="(max-width: 640px) 80px, (max-width: 768px) 100px, 120px"
               />
             </div>
           </Link>
