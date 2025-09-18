@@ -16,15 +16,7 @@ export default function Header() {
   const [isOpen, setIsOpen] = useState(false)
 
   return (
-    <header
-      className="sticky top-0 z-50 w-full border-b border-border"
-      style={{
-        background:
-          "linear-gradient(135deg, rgba(228, 103, 21, 0.08) 0%, rgba(102, 41, 56, 0.06) 50%, rgba(255, 255, 255, 0.95) 100%)",
-        backdropFilter: "blur(12px)",
-        WebkitBackdropFilter: "blur(12px)",
-      }}
-    >
+    <header className="sticky top-0 z-50 w-full border-b border-border glass">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 sm:h-20 items-center justify-between">
           <Link href="/" className="flex items-center gap-2 sm:gap-4 flex-shrink-0">
@@ -37,10 +29,7 @@ export default function Header() {
               priority
               sizes="(max-width: 640px) 140px, 180px"
             />
-            <div
-              className="block bg-red-800 px-1.5 py-1 sm:px-3 sm:py-2 rounded-md transition-all duration-200"
-              style={{ backgroundColor: "rgb(102, 41, 56)" }}
-            >
+            <div className="block bg-secondary px-1.5 py-1 sm:px-3 sm:py-2 rounded-md transition-all duration-200">
               <Image
                 src="/uai-nuevo-logo.png"
                 alt="UAI Logo"
@@ -87,16 +76,7 @@ export default function Header() {
                 <MenuIcon className="h-5 w-5 sm:h-6 sm:w-6 text-foreground" />
               </Button>
             </SheetTrigger>
-            <SheetContent
-              side="right"
-              className="w-[280px] sm:w-[350px] border-border shadow-xl"
-              style={{
-                background:
-                  "linear-gradient(135deg, rgba(228, 103, 21, 0.08) 0%, rgba(102, 41, 56, 0.06) 50%, rgba(255, 255, 255, 0.98) 100%)",
-                backdropFilter: "blur(16px)",
-                WebkitBackdropFilter: "blur(16px)",
-              }}
-            >
+            <SheetContent side="right" className="w-[280px] sm:w-[350px] border-border shadow-xl glass">
               <div className="flex items-center justify-between p-6 border-b border-border/20">
                 <Link href="/" className="flex items-center gap-2" onClick={() => setIsOpen(false)}>
                   <Image

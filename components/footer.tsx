@@ -30,19 +30,17 @@ export default function Footer() {
                 sizes="180px"
               />
             </Link>
-            <p className="body-base text-foreground/80">Formación Universitaria en Coaching Ontológico 100% online.</p>
             <div className="rounded-lg border border-white/30 dark:border-white/10 p-4 flex items-center gap-4 bg-white/50 dark:bg-neutral-900/40">
               <div className="shrink-0">
                 <Image
                   src="/uai-certifica-logo.jpeg"
                   alt="CERTIFICA UAI - Universidad Abierta Interamericana"
-                  width={140}
-                  height={42}
+                  width={180}
+                  height={54}
                   loading="lazy"
-                  sizes="140px"
+                  sizes="180px"
                 />
               </div>
-              <p className="body-small text-foreground/70">Con el respaldo académico de la UAI.</p>
             </div>
           </div>
 

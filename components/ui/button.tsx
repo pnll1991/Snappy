@@ -13,12 +13,13 @@ const buttonVariants = cva(
           "backdrop-blur-xl bg-white/30 dark:bg-neutral-900/30 border border-white/30 dark:border-white/10 shadow-[0_6px_24px_rgba(0,0,0,0.12),_inset_0_1px_0_rgba(255,255,255,0.6)] text-foreground hover:bg-white/40 dark:hover:bg-neutral-900/40 active:bg-white/45 dark:active:bg-neutral-900/45 hover:shadow-[0_12px_32px_rgba(0,0,0,0.18),_inset_0_1px_0_rgba(255,255,255,0.6)]",
         "glass-outline":
           "backdrop-blur-xl bg-white/15 dark:bg-neutral-900/15 border border-white/35 dark:border-white/10 text-foreground shadow-[0_4px_18px_rgba(0,0,0,0.08)] hover:bg-white/25 dark:hover:bg-neutral-900/25 hover:shadow-[0_8px_24px_rgba(0,0,0,0.14)]",
-        default: "bg-primary text-white shadow hover:bg-primary/90 hover:shadow-lg",
+        default: "bg-primary text-primary-foreground shadow hover:bg-primary/90 hover:shadow-lg",
         destructive: "bg-destructive text-destructive-foreground shadow-sm hover:bg-destructive/90 hover:shadow",
         outline: "border border-input bg-background hover:bg-accent hover:text-accent-foreground hover:shadow",
         secondary: "bg-secondary text-secondary-foreground shadow-sm hover:bg-secondary/90 hover:shadow",
         ghost: "hover:bg-accent hover:text-accent-foreground",
         link: "text-primary underline underline-offset-4 hover:opacity-90 hover:no-underline",
+        whatsapp: "bg-whatsapp text-whatsapp-foreground shadow hover:bg-whatsapp/90 hover:shadow-lg hover:scale-110",
       },
       size: {
         sm: "h-10 min-h-[44px] px-4 text-sm leading-5 rounded-md",
@@ -28,6 +29,7 @@ const buttonVariants = cva(
         icon: "h-12 w-12 min-w-[48px] min-h-[48px] rounded-lg",
         "icon-lg": "h-12 w-12 min-w-[48px] min-h-[48px] rounded-lg",
         "icon-xl": "h-12 w-12 min-w-[48px] min-h-[48px] rounded-lg",
+        "icon-whatsapp": "h-16 w-16 min-w-[64px] min-h-[64px] rounded-full",
       },
     },
     defaultVariants: {

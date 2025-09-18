@@ -32,12 +32,11 @@
       radial-gradient(rgba(255, 255, 255, 0.04) 1px, rgba(0, 0, 0, 0) 1px);
   }
 
-  /* Glassmorphism fuerte y visible */
+  /* Unificando glassmorphism con una sola implementación consistente */
   .glass {
-    /* ¡Importante! Fondo semitransparente para que el blur tenga algo que difuminar */
     background: rgba(255, 255, 255, 0.42) !important;
-    backdrop-filter: saturate(180%) blur(28px);
-    -webkit-backdrop-filter: saturate(180%) blur(28px); /* Safari/iOS */
+    backdrop-filter: saturate(180%) blur(20px);
+    -webkit-backdrop-filter: saturate(180%) blur(20px);
     border: 1px solid rgba(255, 255, 255, 0.45);
     box-shadow: 0 14px 56px rgba(0, 0, 0, 0.14);
     background-clip: padding-box;
@@ -50,8 +49,8 @@
 
   .glass-card {
     background: rgba(255, 255, 255, 0.42) !important;
-    backdrop-filter: saturate(180%) blur(28px);
-    -webkit-backdrop-filter: saturate(180%) blur(28px);
+    backdrop-filter: saturate(180%) blur(20px);
+    -webkit-backdrop-filter: saturate(180%) blur(20px);
     border: 1px solid rgba(255, 255, 255, 0.45);
     border-radius: 1rem;
     box-shadow: 0 16px 60px rgba(0, 0, 0, 0.16);
@@ -150,12 +149,13 @@
     --popover: 0 0% 100%;
     --popover-foreground: 222.2 47.4% 11.2%;
 
-    /* Cambiando primary a naranja fuerte para botón campus */
+    /* Manteniendo primary como naranja fuerte */
     --primary: 22 96% 50%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    /* Corrigiendo secondary para usar el color UAI burgundy */
+    --secondary: 339 65% 38%;
+    --secondary-foreground: 0 0% 100%;
 
     --muted: 210 40% 96.1%;
     --muted-foreground: 215.4 16.3% 46.9%;
@@ -179,6 +179,10 @@
     --sidebar-accent-foreground: 240 5.9% 10%;
     --sidebar-border: 220 13% 91%;
     --sidebar-ring: 217.2 91.2% 59.8%;
+
+    /* Agregando variables para WhatsApp */
+    --whatsapp: 142 76% 36%;
+    --whatsapp-foreground: 0 0% 100%;
   }
 
   .dark {
@@ -195,8 +199,9 @@
     --primary: 22 96% 50%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
+    /* Secondary en modo oscuro usando UAI burgundy */
+    --secondary: 339 65% 38%;
+    --secondary-foreground: 0 0% 100%;
 
     --muted: 217.2 32.6% 17.5%;
     --muted-foreground: 215 20.2% 65.1%;
@@ -219,6 +224,10 @@
     --sidebar-accent-foreground: 0 0% 9%;
     --sidebar-border: 0 0% 89.8%;
     --sidebar-ring: 217.2 91.2% 59.8%;
+
+    /* WhatsApp en modo oscuro */
+    --whatsapp: 142 76% 36%;
+    --whatsapp-foreground: 0 0% 100%;
   }
 }
 
