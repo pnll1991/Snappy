@@ -1,0 +1,24 @@
+{
+  "name": "Snappy Coaching",
+  "short_name": "Snappy",
+  "description": "Formación Universitaria en Coaching Ontológico",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#e46715",
+  "icons": [
+    {
+      "src": "/logo-snappy.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/logo-snappy.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "categories": ["education", "business"],
+  "lang": "es",
+  "orientation": "portrait-primary"
+}

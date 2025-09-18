@@ -6,13 +6,13 @@ import { Card } from "@/components/ui/card"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 import Image from "next/image"
 import Link from "next/link"
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { useInView } from "@/hooks/use-in-view"
 import { cn } from "@/lib/utils"
 import type { Course } from "@/app/admin/actions"
 import dynamic from "next/dynamic"
 import { BookOpen, Award, Users, MessageCircle } from "lucide-react"
 import CourseCard from "@/components/course-card"
+import { CachedAvatar } from "@/components/cached-image"
 
 const Carousel = dynamic(() => import("@/components/ui/carousel").then((m) => ({ default: m.Carousel })), {
   ssr: false,
@@ -222,10 +222,12 @@ export default function HomeClient({ latestCourses, teamMembers, testimonials }:
                     >
                       <AccordionTrigger className="px-4 py-3 hover:no-underline">
                         <div className="flex items-center gap-4 text-left">
-                          <Avatar className="w-20 h-20">
-                            <AvatarImage src={member.image || "/placeholder.svg"} alt={member.name} />
-                            <AvatarFallback>{member.name.substring(0, 2)}</AvatarFallback>
-                          </Avatar>
+                          <CachedAvatar
+                            src={member.image || "/placeholder.svg"}
+                            alt={member.name}
+                            size={80}
+                            fallbackInitials={member.name.substring(0, 2)}
+                          />
                           <div>
                             <div className="heading-5">{member.name}</div>
                             <div className="body-small text-primary">{member.role}</div>

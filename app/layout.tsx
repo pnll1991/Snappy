@@ -5,6 +5,7 @@ import "./globals.css"
 import Header from "@/components/header"
 import Footer from "@/components/footer"
 import WhatsappButton from "@/components/whatsapp-button"
+import ServiceWorkerRegistration from "@/components/service-worker-registration"
 import { cn } from "@/lib/utils"
 
 // New typography: Montserrat (heading/accent), Open Sans (body), Lora (display)
@@ -41,6 +42,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <head>
         <link rel="preload" href="/logo-snappy.png" as="image" />
         <link rel="preload" href="/uai-logo-white.png" as="image" />
+        <link rel="manifest" href="/manifest.json" />
+        <meta name="theme-color" content="#e46715" />
+        <meta httpEquiv="Cache-Control" content="public, max-age=31536000, immutable" />
       </head>
       <body
         className={cn(
@@ -54,6 +58,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <main className="min-h-screen">{children}</main>
         <Footer />
         <WhatsappButton />
+        <ServiceWorkerRegistration />
       </body>
     </html>
   )

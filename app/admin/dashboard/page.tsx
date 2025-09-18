@@ -8,8 +8,17 @@ import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
 import { Switch } from "@/components/ui/switch"
 import { useState, useRef, useEffect } from "react"
-import { logout, addCourse, getCourses, deleteCourse, toggleCourseVisibility, type Course } from "../actions"
-import { Trash2, ImageIcon, Pencil, Eye, EyeOff, Users } from "lucide-react"
+import {
+  logout,
+  addCourse,
+  getCourses,
+  deleteCourse,
+  toggleCourseVisibility,
+  getTeachers,
+  type Course,
+  type Teacher,
+} from "../actions"
+import { Trash2, ImageIcon, Pencil, Eye, EyeOff, Users, Plus, BookOpen, GraduationCap } from "lucide-react"
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
 import { Terminal } from "lucide-react"
 import Image from "next/image"
@@ -27,17 +36,19 @@ const toBase64 = (file: File): Promise<string> =>
 
 export default function AdminDashboardPage() {
   const [courses, setCourses] = useState<Course[]>([])
+  const [teachers, setTeachers] = useState<Teacher[]>([])
   const [isPending, setIsPending] = useState(false)
   const [formMessage, setFormMessage] = useState<{ success: boolean; message: string } | null>(null)
   const [content, setContent] = useState<string>("")
   const formRef = useRef<HTMLFormElement>(null)
 
   useEffect(() => {
-    async function fetchCourses() {
-      const fetched = await getCourses()
-      setCourses(fetched)
+    async function fetchData() {
+      const [fetchedCourses, fetchedTeachers] = await Promise.all([getCourses(), getTeachers()])
+      setCourses(fetchedCourses)
+      setTeachers(fetchedTeachers)
     }
-    fetchCourses()
+    fetchData()
   }, [])
 
   const handleFormSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
@@ -85,24 +96,61 @@ export default function AdminDashboardPage() {
     }
   }
 
+  const visibleTeachers = teachers.filter((t) => t.visible)
+  const visibleCourses = courses.filter((c) => c.visible)
+
   return (
     <div className="min-h-screen bg-light py-12">
       <div className="container">
         <div className="flex justify-between items-center mb-8">
-          <h1 className="heading-2 text-dark">Panel de Administración</h1>
-          <div className="flex gap-2">
-            <Button variant="secondary" size="lg" asChild>
-              <Link href="/admin/instructors">
-                <Users className="h-4 w-4 mr-2" />
-                Gestionar Instructores
-              </Link>
-            </Button>
-            <form action={logout}>
-              <Button variant="glass-outline" size="lg">
-                Cerrar Sesión
-              </Button>
-            </form>
+          <div>
+            <h1 className="heading-2 text-dark">Panel de Administración</h1>
+            <p className="text-muted-foreground">Gestiona cursos y docentes de Snappy Coaching</p>
           </div>
+          <form action={logout}>
+            <Button variant="glass-outline" size="lg">
+              Cerrar Sesión
+            </Button>
+          </form>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+          <Card>
+            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+              <CardTitle className="text-sm font-medium">Cursos Totales</CardTitle>
+              <BookOpen className="h-4 w-4 text-muted-foreground" />
+            </CardHeader>
+            <CardContent>
+              <div className="text-2xl font-bold">{courses.length}</div>
+              <p className="text-xs text-muted-foreground">{visibleCourses.length} visibles en la página</p>
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+              <CardTitle className="text-sm font-medium">Docentes</CardTitle>
+              <GraduationCap className="h-4 w-4 text-muted-foreground" />
+            </CardHeader>
+            <CardContent>
+              <div className="text-2xl font-bold">{teachers.length}</div>
+              <p className="text-xs text-muted-foreground">{visibleTeachers.length} visibles en la página</p>
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+              <CardTitle className="text-sm font-medium">Acciones Rápidas</CardTitle>
+              <Plus className="h-4 w-4 text-muted-foreground" />
+            </CardHeader>
+            <CardContent className="space-y-2">
+              <Link href="/admin/teachers" className="block">
+                <Button variant="outline" size="sm" className="w-full justify-start bg-transparent">
+                  <Users className="h-4 w-4 mr-2" />
+                  Gestionar Docentes
+                </Button>
+              </Link>
+            </CardContent>
+          </Card>
         </div>
 
         <Card className="mb-8">
@@ -182,6 +230,79 @@ export default function AdminDashboardPage() {
                 </Alert>
               )}
             </form>
+          </CardContent>
+        </Card>
+
+        <Card className="mb-8">
+          <CardHeader>
+            <div className="flex items-center justify-between">
+              <div>
+                <CardTitle className="heading-5">Equipo Docente</CardTitle>
+                <CardDescription>
+                  Docentes que aparecen en la página de inicio ({visibleTeachers.length} de {teachers.length} visibles)
+                </CardDescription>
+              </div>
+              <Link href="/admin/teachers">
+                <Button variant="outline">
+                  <Users className="h-4 w-4 mr-2" />
+                  Gestionar Docentes
+                </Button>
+              </Link>
+            </div>
+          </CardHeader>
+          <CardContent>
+            {teachers.length === 0 ? (
+              <div className="text-center py-8">
+                <Users className="h-12 w-12 text-muted-foreground mx-auto mb-4" />
+                <p className="text-muted-foreground mb-4">No hay docentes registrados</p>
+                <Link href="/admin/teachers/new">
+                  <Button>
+                    <Plus className="h-4 w-4 mr-2" />
+                    Agregar Primer Docente
+                  </Button>
+                </Link>
+              </div>
+            ) : (
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                {teachers.slice(0, 6).map((teacher) => (
+                  <div key={teacher.id} className="flex items-center gap-3 p-3 border rounded-md bg-white">
+                    {teacher.image ? (
+                      <div className="relative w-12 h-12 rounded-full overflow-hidden bg-muted flex-shrink-0">
+                        <Image
+                          src={teacher.image || "/placeholder.svg"}
+                          alt={teacher.name}
+                          fill
+                          className="object-cover"
+                        />
+                      </div>
+                    ) : (
+                      <div className="w-12 h-12 rounded-full bg-muted flex items-center justify-center flex-shrink-0">
+                        <Users className="h-6 w-6 text-muted-foreground" />
+                      </div>
+                    )}
+                    <div className="flex-1 min-w-0">
+                      <h4 className="font-medium text-sm truncate">{teacher.name}</h4>
+                      <p className="text-xs text-muted-foreground truncate">{teacher.role}</p>
+                      <div className="flex items-center gap-1 mt-1">
+                        {teacher.visible ? (
+                          <Eye className="h-3 w-3 text-green-600" />
+                        ) : (
+                          <EyeOff className="h-3 w-3 text-gray-400" />
+                        )}
+                        <span className="text-xs text-muted-foreground">{teacher.visible ? "Visible" : "Oculto"}</span>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+                {teachers.length > 6 && (
+                  <div className="flex items-center justify-center p-3 border rounded-md bg-muted/50">
+                    <Link href="/admin/teachers" className="text-sm text-muted-foreground hover:text-foreground">
+                      +{teachers.length - 6} más docentes
+                    </Link>
+                  </div>
+                )}
+              </div>
+            )}
           </CardContent>
         </Card>
 

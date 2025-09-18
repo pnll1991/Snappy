@@ -1,75 +1,8 @@
-import { getVisibleCourses, type Course } from "@/app/admin/actions"
+import { getVisibleCourses, getVisibleTeachers, type Course } from "@/app/admin/actions"
 import HomeClient from "@/components/home-client"
 import FaqJsonLd from "@/components/seo/faq-jsonld"
-
-const teamMembers = [
-  {
-    name: "Lic. Marta Repupilli",
-    role: "Senior Coach Ontológico Profesional",
-    image: "/marta-repupilli.png",
-    bio: "Coach con amplia trayectoria en procesos de transformación personal y organizacional. Ha liderado equipos y programas de formación durante más de 15 años.",
-    highlights: [
-      "Más de 1.500 horas de coaching ejecutivo y de equipos",
-      "Docente universitaria en programas de liderazgo",
-      "Conferencista en eventos internacionales de coaching",
-    ],
-  },
-  {
-    name: "Gustavo Cone Vera",
-    role: "Coach Ontológico Profesional",
-    image: "/gustavo-cone-vera.jpeg",
-    bio: "Especialista en liderazgo adaptativo y desarrollo de habilidades blandas. Acompaña a profesionales y empresas en procesos de cambio cultural.",
-    highlights: [
-      "Diseño e implementación de programas de liderazgo",
-      "Facilitador en metodologías ágiles aplicadas a personas",
-      "Mentor de coaches en etapa inicial",
-    ],
-  },
-  {
-    name: "Graciela Helguero",
-    role: "Coach Ontológico Profesional",
-    image: "/graciela-helguero.png",
-    bio: "Enfocada en el bienestar integral y el desarrollo del potencial humano, integra herramientas de coaching con prácticas de comunicación efectiva.",
-    highlights: [
-      "Programas de intervención en equipos de alto rendimiento",
-      "Acompañamiento a líderes en contextos de cambio",
-      "Experiencia en educación y formación de formadores",
-    ],
-  },
-  {
-    name: "Mónica Castro",
-    role: "Coach Ontológico Profesional",
-    image: "/monica-castro.png",
-    bio: "Experta en gestión de equipos y mejora de desempeño. Se especializa en acompañar a organizaciones a construir culturas de aprendizaje continuo.",
-    highlights: [
-      "Consultoría en transformación cultural",
-      "Docencia en habilidades de comunicación y feedback",
-      "Entrenadora de competencias conversacionales",
-    ],
-  },
-  {
-    name: "José María Arancibia",
-    role: "Coach Ontológico Profesional",
-    image: "/jose-maria-arancibia.jpeg",
-    bio: "Acompaña a profesionales y emprendedores a alcanzar resultados sostenibles mediante el desarrollo de competencias de liderazgo y autogestión.",
-    highlights: [
-      "Más de 10 años de experiencia como coach",
-      "Facilitador en programas de liderazgo personal",
-      "Mentor en planes de carrera y propósito",
-    ],
-  },
-  {
-    name: "María Natalia Pedernera",
-    role: "Coach Ontológico Profesional",
-    image: "/maria_natalia_pedernera.jpeg",
-    bio: "Se especializa en crecimiento profesional con foco en comunicación, trabajo colaborativo y gestión emocional.",
-    highlights: [
-      "Programas de capacitación para empresas",
-      "Diseño de itinerarios formativos online",
-      "Acompañamiento a equipos interdisciplinarios",
-    ],
-  },
-]
+import PerformanceMonitor from "@/components/performance-monitor"
+import { preloadImages } from "@/hooks/use-image-cache"
 
 const testimonials = [
   {
@@ -117,6 +50,7 @@ const faqItems = [
 
 export default async function HomePage() {
   let latestCourses: Course[] = []
+  let teamMembers: any[] = []
 
   try {
     latestCourses = await getVisibleCourses()
@@ -125,15 +59,44 @@ export default async function HomePage() {
       "[v0] Cursos visibles:",
       latestCourses.map((c) => ({ id: c.id, title: c.title, visible: c.visible })),
     )
+
+    const teachers = await getVisibleTeachers()
+    console.log("[v0] Total docentes visibles encontrados:", teachers.length)
+
+    // Transform teachers to match the expected format for HomeClient
+    teamMembers = teachers.map((teacher) => ({
+      name: teacher.name,
+      role: teacher.role,
+      image: teacher.image || "/placeholder.svg",
+      bio: teacher.bio,
+      highlights: teacher.highlights || [],
+    }))
+
+    if (typeof window !== "undefined") {
+      const criticalImages = [
+        "/logo-snappy.png",
+        "/uai-logo-white.png",
+        ...latestCourses
+          .slice(0, 3)
+          .map((course) => course.image)
+          .filter(Boolean),
+        ...teamMembers
+          .slice(0, 3)
+          .map((member) => member.image)
+          .filter(Boolean),
+      ]
+      preloadImages(criticalImages)
+    }
   } catch (error) {
     console.error("Database connection error:", error)
-    // Continue with empty array if database is not available
+    // Continue with empty arrays if database is not available
   }
 
   return (
     <>
       <FaqJsonLd items={faqItems} />
       <HomeClient latestCourses={latestCourses.slice(0, 3)} teamMembers={teamMembers} testimonials={testimonials} />
+      <PerformanceMonitor />
     </>
   )
 }

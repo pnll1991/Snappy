@@ -62,6 +62,20 @@
     box-shadow: 0 16px 60px rgba(0, 0, 0, 0.58);
   }
 
+  /* Adding shimmer animation for loading states */
+  @keyframes shimmer {
+    0% {
+      transform: translateX(-100%);
+    }
+    100% {
+      transform: translateX(100%);
+    }
+  }
+
+  .animate-shimmer {
+    animation: shimmer 2s infinite;
+  }
+
   /* Design System Spacing Scale */
   .section-spacing {
     @apply py-20 md:py-24;

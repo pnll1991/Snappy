@@ -3,10 +3,9 @@
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
-import Image from "next/image"
 import { Clock, Calendar, Award, ImageIcon } from "lucide-react"
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import type { Course } from "@/app/admin/actions"
+import { CachedContentImage } from "@/components/cached-image"
 
 type Props = {
   course: Course
@@ -18,16 +17,14 @@ export default function CourseCard({ course, ctaLabel = "Ver programa" }: Props)
     <Card className="flex flex-col overflow-hidden glass-card">
       <div className="relative w-full aspect-square">
         {course.image ? (
-          <Image
-            src={course.image || "/placeholder.svg"}
+          <CachedContentImage
+            src={course.image}
             alt={course.title}
-            fill
-            className="object-cover rounded-md"
-            loading="lazy"
-            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+            aspectRatio="aspect-square"
+            className="rounded-t-lg"
           />
         ) : (
-          <div className="w-full h-full flex items-center justify-center">
+          <div className="w-full h-full flex items-center justify-center bg-muted rounded-t-lg">
             <ImageIcon className="w-12 h-12 text-muted-foreground" />
           </div>
         )}
@@ -51,20 +48,6 @@ export default function CourseCard({ course, ctaLabel = "Ver programa" }: Props)
           <Award className="h-4 w-4" />
           <span>Certificación: {course.certification}</span>
         </div>
-
-        {course.professionals && course.professionals.length > 0 && (
-          <div className="pt-2">
-            <div className="heading-6 mb-2">Profesionales</div>
-            <div className="flex -space-x-3">
-              {course.professionals.slice(0, 5).map((professional, idx) => (
-                <Avatar key={idx} className="w-10 h-10 ring-2 ring-background">
-                  <AvatarImage src={professional.image || "/placeholder.svg"} alt={professional.name} />
-                  <AvatarFallback>{professional.name?.substring(0, 2) || "PR"}</AvatarFallback>
-                </Avatar>
-              ))}
-            </div>
-          </div>
-        )}
       </CardContent>
 
       <CardFooter className="flex justify-center pt-6">
