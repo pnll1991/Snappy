@@ -75,7 +75,7 @@ const nextConfig = {
   poweredByHeader: false,
   
   experimental: {
-    optimizeCss: true,
+    // optimizeCss: true, // Removed to fix 'critters' module error during build
     optimizePackageImports: ['lucide-react', '@radix-ui/react-icons']
   }
 };
