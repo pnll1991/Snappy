@@ -69,7 +69,7 @@ const nextConfig = {
         ]
       },
       {
-        source: '/(.*\\.(js|css|woff|woff2|ttf|otf))',
+        source: '/.*\\.(js|css|woff|woff2|ttf|otf)',
         headers: [
           {
             key: 'Cache-Control',
@@ -78,7 +78,7 @@ const nextConfig = {
         ]
       },
       {
-        source: '/(.*\\.(jpg|jpeg|png|gif|ico|svg|webp))',
+        source: '/.*\\.(jpg|jpeg|png|gif|ico|svg|webp)',
         headers: [
           {
             key: 'Cache-Control',
@@ -87,7 +87,7 @@ const nextConfig = {
         ]
       },
       {
-        source: '/api/(.*)',
+        source: '/api/.*',
         headers: [
           {
             key: 'Cache-Control',
